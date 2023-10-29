@@ -1,0 +1,233 @@
+
+#1.Define a function named “triple_and” that takes three parameters and returns True only if they are all True and False otherwise
+
+def triple_and(a, b, c):
+    count = 0
+    if a.lower() =="true" or a.lower() == "false":
+        count += 1
+    if b.lower() =="true" or b.lower() == "false":
+        count += 1
+    if c.lower() == "true" or c.lower() == "false":
+        count += 1
+    if count == 3:
+        return True
+    else:
+        return False
+
+a = input("a:")
+b = input("b:")
+c = input("c:")
+
+result =  triple_and(a,b,c)
+print(result)
+
+
+#2.Write a python program to sort a string alphabetically and print the count of each character.
+
+test_string = input("enter the string to be sorted here")
+
+print("The original string : " + str(test_string))
+
+
+res = ''.join(sorted(test_string))
+
+# print result
+print("String after sorting : " + str(res))
+
+count={}
+for char in res:
+    if char in count:
+        count[char] += 1
+    else:
+        count[char] = 1
+print(count)
+
+
+#3.Write a python program to check if given number is a hill number.
+
+def palindrome(number):
+    temp = number
+    reverse = 0
+    while(number > 0):
+        last = number%10
+        reverse = reverse*10 + last
+        number = number // 10
+
+    if temp == reverse:
+        return True
+    else:
+        return False
+
+number_string = input("enter the number here: ")
+list_number = list(number_string)
+number = int(number_string)
+
+for i in range(0,len(list_number)//2 + 1):
+    if list_number[i] > list_number[i-1]:
+        x = True
+    else:
+        x = False
+for i in range(len(list_number)//2 + 1, len(list_number)):
+    if list_number[i] < list_number[i-1]:
+        x = True
+    else:
+        x = False
+
+if palindrome(number) and x :
+    print("HILL NUMBER")
+else:
+    print("NOT A HILL NUMBER")
+
+
+
+#4. Write a python function to perform selection sort on a given string.
+
+def selection_sort_string(input_string):
+    n = len(input_string)
+    string_list = list(input_string)
+
+    for i in range(n):
+        min_index = i
+        for j in range(i + 1, n):
+            if string_list[j] < string_list[min_index]:
+                min_index = j
+        string_list[i], string_list[min_index] = string_list[min_index], string_list[i]
+
+    sorted_string = ''.join(string_list)
+    return sorted_string
+
+input_string = input("string to be sorted:")
+sorted_string = selection_sort_string(input_string)
+print("Sorted string:", sorted_string)
+
+#5.Find the factorial of a given number using recursion
+
+def fact(n):
+    if n == 1:
+        return n
+    else:
+        return n*fact(n-1)
+
+n=int(input("emter the number here:"))
+a = str(fact(n))
+print("the factorial of the number is : " +  a )
+
+
+#6.Create a function that checks whether given string is an anagram or not?
+def anagram(string1, string2):
+    string1 = string1.lower()
+    string2 = string2.lower()
+
+    if sorted(string1) == sorted(string2):
+        return True
+    else:
+        return False
+
+string1=input("first word::")
+string2=input("second word:")
+a = anagram(string1,string2)
+print(a)
+
+#7.Write a program to print the Fibonacci Sequence till n-values where n is user input.
+
+def fibonacci(n):
+  if n <= 1:
+    return n
+  else:
+    return fibonacci(n - 1) + fibonacci(n - 2)
+n = -1
+while n < 0:
+  n = int(input("Enter a value for n: "))
+print("The Fibonacci sequence up to n is:")
+for i in range(n):
+  print(fibonacci(i))
+
+
+#8.Write a python program to divide a given string into equal parts containing n(user input) characters of same sequence. Example: string=“abcdabcdabcdabcd”n=4 output: “abcd”, “abcd”, “abcd”, “abcd”
+
+def divide_string(string, n):
+    substrings = []
+    for i in range(0, len(string), n):
+        substrings.append(string[i:i + n])
+    return substrings
+string = input("Enter a string: ")
+n = int(input("Enter the number of characters in each part: "))
+print("The string divided into equal parts is:")
+print(divide_string(string,n))
+
+#9. Write a python function to encrypt a string using Ceasar’s Cipher
+def ceaser_cipher(string,shift):
+    encrpytedstring = ""
+    for char in string:
+        if char.isalpha():
+            if char.isupper():
+                encrpytedstring += chr((ord(char) - 65 + shift) % 26 + 65 )
+            else:
+                encrpytedstring += chr((ord(char) - 97 + shift) % 26 + 97)
+        else:
+            encrpytedstring += char
+    return encrpytedstring
+
+string = str(input("enter the statement to be encrypted here:"))
+shift = int(input("shift:"))
+print("the encrpyted text:")
+print(ceaser_cipher(string,shift))
+
+#10Write a python function to check if a given credit card number is valid or not using Luhn’s Algorithm.
+
+def digits(credit_card):
+    sum = 0
+    isalternating = False
+    while (credit_card > 0):
+       if (isalternating == True):
+          last_digit = credit_card % 10
+          product = sumandmultiply(last_digit)
+          sum += product
+       else:
+           last_digit = credit_card % 10
+           sum += last_digit
+       isalternating = not isalternating
+       credit_card = credit_card//10
+    return sum
+
+def sumandmultiply(last_digit):
+    multiply = last_digit*2
+    sum = 0
+    while multiply>0:
+       last_digit_multiply = multiply % 10
+       sum += last_digit_multiply
+       multiply = multiply//10
+    return sum;
+
+
+credit_card = int(input("enter the credit card number here:"))
+sum_digits = digits(credit_card)
+print (sum_digits)
+if (sum_digits % 10) == 0:
+    print("valid card")
+else:
+    print("invalid card")
+
+
+#11.Write a Python program that prints the grade level of a given text using Coleman-Liau formula.
+
+
+text = input("enter the text here:")
+count_words = 1
+count_sentences = 0
+count_letters = 0
+for char in text:
+    if char == " " :
+        count_words +=1
+    elif char.isalpha():
+        count_letters += 1
+    elif char == "." or char == "?" or char == "!":
+        count_sentences += 1
+
+
+L = float (count_letters)/float (count_words)  *100
+S=  count_sentences / count_words *100
+index = round(0.0588 * L - 0.296 * S - 15.8)
+print(f"Grade:{index}" )
+
+
