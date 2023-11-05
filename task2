@@ -1,9 +1,9 @@
+                             #24 INCOMPLETE
 #1
 import pandas as pd
 matches_df = pd.read_csv('matches.csv')
 matches_2008 = matches_df[matches_df['season'] == 2008 ]
 print(matches_2008.count()[0])
-
 
 #2
 import pandas as pd
@@ -13,13 +13,11 @@ min_matches= matches_df['city'].value_counts().idxmin()
 print(f"The city in which most matches were played is : {max_matches}")
 print(f"The city in which least matches were played is : {min_matches}")
 
-
 #3
 import pandas as pd
 matches_df = pd.read_csv('matches.csv')
 match = matches_df['city'].value_counts()
 print(match)
-
 
 #4
 import pandas as pd
@@ -30,11 +28,18 @@ print(f"Most tosses won by: {toss_max}")
 print(f"Least tosses won by: {toss_min}")
 
 #5
-
-
-
-
-
+import pandas as pd
+matches_df = pd.read_csv('matches.csv')
+toss_max = matches_df['toss_winner'].value_counts().idxmax()
+toss_min = matches_df['toss_winner'].value_counts().idxmin()
+toss_max_df = matches_df[matches_df['toss_winner'] == toss_max]
+toss_min_df = matches_df[matches_df['toss_winner'] == toss_min]
+decision_counts_max = toss_max_df['toss_decision'].value_counts()
+decision_counts_min = toss_min_df['toss_decision'].value_counts()
+print(toss_max)
+print(decision_counts_max)
+print(toss_min)
+print(decision_counts_min)
 
 #6
 import pandas as pd
@@ -168,6 +173,39 @@ b= matches_df['team2'].value_counts()
 print(a+b)
 
 #23
+import pandas as pd
+matches_df = pd.read_csv('matches.csv')
+a = matches_df['team1'].value_counts()
+b= matches_df['team2'].value_counts()
+total_matches_played = a + b
+matches_won = matches_df['winner'].value_counts()
+win_rate = matches_won/total_matches_played
+result_df = pd.DataFrame({'Total Matches Played': total_matches_played, 'Matches Won': matches_won,'Win Rate': win_rate})
+print(result_df)
+
+#24
 
 
 
+
+
+
+
+
+
+#25
+import pandas as pd
+matches_df = pd.read_csv('matches.csv')
+a = matches_df['team1'].value_counts()
+b= matches_df['team2'].value_counts()
+total_matches_played = a + b
+matches_won = matches_df['winner'].value_counts()
+win_rate = matches_won/total_matches_played
+print(win_rate)
+
+
+#26
+import pandas as pd
+matches_df = pd.read_csv('matches.csv')
+team_decision = matches_df.groupby('toss_winner')[['toss_decision']].value_counts()
+print(team_decision)
